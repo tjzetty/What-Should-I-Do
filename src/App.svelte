@@ -9,7 +9,7 @@
   };
 
   const endpoint: URL = new URL("http://www.boredapi.com/api/activity/");
-  let suggestion: Suggestion;
+  let suggestion: Suggestion = {} as Suggestion;
 
   async function getSuggestion() {
     const res = await fetch(endpoint);
@@ -17,8 +17,6 @@
     const jsonRes: Suggestion = await res.json();
     return jsonRes; // { activity, accessibility, type, participants, price }
   }
-
-  suggestion = getSuggestion();
 
   async function onRedButton() {
     suggestion = await getSuggestion();
