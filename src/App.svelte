@@ -55,11 +55,12 @@
   function handleChipClick(id: string) {
     chipSelect[id] = !chipSelect[id];
     apiWithConstraints = constructURL(apiURL);
+    logEvent(analytics, id + "ChipClicked");
   }
 
   async function onRedButton() {
     suggestion = await getSuggestion();
-    logEvent(analytics, "ButtonClicked");
+    logEvent(analytics, "BigRedButtonClicked");
   }
 </script>
 
