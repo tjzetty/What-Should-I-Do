@@ -1,18 +1,7 @@
 <script lang="ts">
-  import { initializeApp } from "firebase/app";
   import { getAnalytics, logEvent } from "firebase/analytics";
+  import { app } from "./lib/firebase";
 
-  const firebaseConfig = {
-    apiKey: import.meta.env.VITE_firebaseApiKey,
-    authDomain: import.meta.env.VITE_firebaseAuthDomain,
-    projectId: import.meta.env.VITE_firebaseProjectId,
-    storageBucket: import.meta.env.VITE_firebaseStorageBucket,
-    messagingSenderId: import.meta.env.VITE_firebaseMessagingSenderId,
-    appId: import.meta.env.VITE_firebaseAppId,
-    measurementId: import.meta.env.VITE_firebaseMeasurementId,
-  };
-
-  const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 
   type Suggestion = {
