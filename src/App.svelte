@@ -1,4 +1,20 @@
 <script lang="ts">
+  import { initializeApp } from "firebase/app";
+  import { getAnalytics, logEvent } from "firebase/analytics";
+
+  const firebaseConfig = {
+    apiKey: import.meta.env.VITE_firebaseApiKey,
+    authDomain: import.meta.env.VITE_firebaseAuthDomain,
+    projectId: import.meta.env.VITE_firebaseProjectId,
+    storageBucket: import.meta.env.VITE_firebaseStorageBucket,
+    messagingSenderId: import.meta.env.VITE_firebaseMessagingSenderId,
+    appId: import.meta.env.VITE_firebaseAppId,
+    measurementId: import.meta.env.VITE_firebaseMeasurementId,
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
   type Suggestion = {
     activity: String;
     accessibility: number;
@@ -8,7 +24,7 @@
     link: String;
   };
 
-  const endpoint: URL = new URL("http://www.boredapi.com/api/activity/");
+  const endpoint: URL = new URL("https://www.boredapi.com/api/activity/");
   let suggestion: Suggestion = {} as Suggestion;
 
   async function getSuggestion() {
@@ -20,6 +36,7 @@
 
   async function onRedButton() {
     suggestion = await getSuggestion();
+    logEvent(analytics, "ButtonClicked");
     console.log(suggestion.activity);
   }
 </script>
