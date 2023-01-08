@@ -90,7 +90,15 @@
     {#await suggestion}
       <p>...waiting</p>
     {:then suggestion}
-      <p>{suggestion.activity}</p>
+      {#if suggestion.link}
+        <p>
+          <a href={suggestion.link} target="_blank" rel="noreferrer">
+            {suggestion.activity}
+          </a>
+        </p>
+      {:else}
+        <p>{suggestion.activity}</p>
+      {/if}
     {:catch error}
       <p style="color: red">{error.message}</p>
     {/await}
